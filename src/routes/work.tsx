@@ -74,7 +74,11 @@ function WorkPage() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {visible.map((p, i) => (
-            <ProjectCard key={p.id} project={p} image={thumbs[p.id] ?? fallbacks[i % fallbacks.length]} />
+            <ProjectCard
+              key={p.id}
+              project={p}
+              image={thumbs[p.id] ?? fallbacks[i % fallbacks.length] ?? fallback1}
+            />
           ))}
         </div>
 
