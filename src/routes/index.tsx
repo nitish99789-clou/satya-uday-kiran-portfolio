@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Uday Kiran — Video Editor & Visual Storyteller" },
       {
         property: "og:description",
-        content: "Cinematic video editing, color grading and motion graphics.",
+        content: "Uday Kiran transforms raw footage into cinematic stories — commercials, music videos, short films and travel content.",
       },
     ],
   }),

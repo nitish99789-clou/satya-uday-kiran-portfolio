@@ -81,11 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Uday Kiran — Video Editor & Visual Storyteller" },
       {
         name: "description",
-        content: "Cinematic video editing, color grading and visual storytelling by Uday Kiran.",
+        content: "Uday Kiran transforms raw footage into cinematic stories — commercials, music videos, short films and travel content.",
       },
       { name: "author", content: "Uday Kiran" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Uday Kiran — Video Editor & Visual Storyteller" },
+      { name: "twitter:title", content: "Uday Kiran — Video Editor & Visual Storyteller" },
+      { property: "og:description", content: "Uday Kiran transforms raw footage into cinematic stories — commercials, music videos, short films and travel content." },
+      { name: "twitter:description", content: "Uday Kiran transforms raw footage into cinematic stories — commercials, music videos, short films and travel content." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/76b17770-0f14-41e3-bfdc-42bd9081ec56" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/76b17770-0f14-41e3-bfdc-42bd9081ec56" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
