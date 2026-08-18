@@ -66,7 +66,7 @@ export const allProjectsQuery = queryOptions({
   },
 });
 
-function listQuery<T>(table: string) {
+function listQuery<T>(table: "statistics" | "services" | "experience" | "social_links") {
   return queryOptions({
     queryKey: [table],
     queryFn: async (): Promise<T[]> => {
