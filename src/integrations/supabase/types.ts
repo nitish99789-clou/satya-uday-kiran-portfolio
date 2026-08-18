@@ -14,13 +14,240 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      experience: {
+        Row: {
+          company: string
+          created_at: string
+          description: string
+          id: string
+          period: string
+          role: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          company?: string
+          created_at?: string
+          description?: string
+          id?: string
+          period?: string
+          role: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          description?: string
+          id?: string
+          period?: string
+          role?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profile: {
+        Row: {
+          about_bio: string
+          about_eyebrow: string
+          about_heading: string
+          avatar_url: string | null
+          contact_description: string
+          contact_heading: string
+          created_at: string
+          email: string
+          full_name: string
+          hero_description: string
+          hero_intro: string
+          hero_line1: string
+          hero_line2_a: string
+          hero_line2_b: string
+          id: string
+          location: string
+          phone: string
+          updated_at: string
+          work_heading: string
+        }
+        Insert: {
+          about_bio?: string
+          about_eyebrow?: string
+          about_heading?: string
+          avatar_url?: string | null
+          contact_description?: string
+          contact_heading?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          hero_description?: string
+          hero_intro?: string
+          hero_line1?: string
+          hero_line2_a?: string
+          hero_line2_b?: string
+          id?: string
+          location?: string
+          phone?: string
+          updated_at?: string
+          work_heading?: string
+        }
+        Update: {
+          about_bio?: string
+          about_eyebrow?: string
+          about_heading?: string
+          avatar_url?: string | null
+          contact_description?: string
+          contact_heading?: string
+          created_at?: string
+          email?: string
+          full_name?: string
+          hero_description?: string
+          hero_intro?: string
+          hero_line1?: string
+          hero_line2_a?: string
+          hero_line2_b?: string
+          id?: string
+          location?: string
+          phone?: string
+          updated_at?: string
+          work_heading?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          id: string
+          published: boolean
+          sort_order: number
+          subtitle: string
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          video_url: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          published?: boolean
+          sort_order?: number
+          subtitle?: string
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          published?: boolean
+          sort_order?: number
+          subtitle?: string
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      social_links: {
+        Row: {
+          created_at: string
+          id: string
+          platform: string
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          platform: string
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          platform?: string
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      statistics: {
+        Row: {
+          created_at: string
+          icon: string
+          id: string
+          label: string
+          sort_order: number
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          icon?: string
+          id?: string
+          label: string
+          sort_order?: number
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          created_at?: string
+          icon?: string
+          id?: string
+          label?: string
+          sort_order?: number
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
