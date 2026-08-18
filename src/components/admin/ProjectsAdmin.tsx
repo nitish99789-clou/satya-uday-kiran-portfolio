@@ -71,7 +71,10 @@ function ProjectEditor({ project, onChanged }: { project: Project; onChanged: ()
       })
       .eq("id", project.id);
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setForm(payload as Project);
     onChanged();
     toast.success("Project saved");
@@ -79,7 +82,10 @@ function ProjectEditor({ project, onChanged }: { project: Project; onChanged: ()
 
   async function remove() {
     const { error } = await supabase.from("projects").delete().eq("id", project.id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     onChanged();
     toast.success("Project deleted");
   }
@@ -90,7 +96,10 @@ function ProjectEditor({ project, onChanged }: { project: Project; onChanged: ()
     const path = `${project.id}-${Date.now()}.${ext}`;
     const { error } = await supabase.storage.from("thumbnails").upload(path, file, { upsert: true });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setForm({ ...form, thumbnail_url: path });
     await save({ thumbnail_url: path });
   }
