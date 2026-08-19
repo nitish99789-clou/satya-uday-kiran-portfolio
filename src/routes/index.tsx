@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, Mouse } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-import { SiteNav, MobileNav } from "@/components/site/SiteNav";
+import { SiteNav } from "@/components/site/SiteNav";
 import { profileQuery } from "@/lib/portfolio";
 import heroImage from "@/assets/hero-setup.jpg";
 
@@ -71,12 +71,6 @@ function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-14 hidden lg:block">
-            <p className="text-xs font-semibold tracking-[0.2em] text-muted-foreground">SCROLL DOWN</p>
-            <div className="mt-2 h-px w-16 bg-primary" />
-            <Mouse className="mt-3 h-6 w-6 text-muted-foreground" />
-          </div>
-        </div>
 
         <div className="relative">
           <img
@@ -84,12 +78,11 @@ function HomePage() {
             alt="Video editing workstation with camera, clapperboard and editing timeline"
             width={1200}
             height={1008}
-            className="w-full object-contain"
+            className="img-blend w-full object-contain"
           />
         </div>
       </main>
 
-      <MobileNav />
     </div>
   );
 }

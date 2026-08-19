@@ -5,7 +5,7 @@ import { LogOut, Save, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
-import { profileQuery, type Profile } from "@/lib/portfolio";
+import { profileQuery, profileContactQuery, type Profile, type ProfileContact } from "@/lib/portfolio";
 import { CrudSection } from "@/components/admin/CrudSection";
 import { ProjectsAdmin } from "@/components/admin/ProjectsAdmin";
 
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/admin/dashboard")({
   component: Dashboard,
 });
 
-const tabs = ["Projects", "Profile", "Services", "Experience", "Social links", "Statistics"] as const;
+const tabs = ["Projects", "Profile", "Contact info", "Services", "Experience", "Social links", "Statistics"] as const;
 type Tab = (typeof tabs)[number];
 
 function Dashboard() {
@@ -116,6 +116,7 @@ function Dashboard() {
       <main className="px-6 pb-20 md:px-10">
         {tab === "Projects" && <ProjectsAdmin />}
         {tab === "Profile" && <ProfileEditor />}
+        {tab === "Contact info" && <ContactEditor />}
         {tab === "Services" && (
           <CrudSection
             table="services"
@@ -186,8 +187,6 @@ const profileFields: { key: keyof Profile; label: string; textarea?: boolean }[]
   { key: "work_heading", label: "Work heading" },
   { key: "contact_heading", label: "Contact heading" },
   { key: "contact_description", label: "Contact description", textarea: true },
-  { key: "email", label: "Email" },
-  { key: "phone", label: "Phone" },
   { key: "location", label: "Location" },
 ];
 
@@ -242,6 +241,62 @@ function ProfileEditor() {
         className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
       >
         <Save className="h-4 w-4" /> Save profile
+      </button>
+    </section>
+  );
+}
+
+function ContactEditor() {
+  const qc = useQueryClient();
+  const { data } = useQuery(profileContactQuery);
+  const [form, setForm] = useState<ProfileContact | null>(null);
+  const current = form ?? data ?? null;
+
+  const save = useMutation({
+    mutationFn: async () => {
+      if (!current) return;
+      const { id, ...rest } = current;
+      const { error } = await supabase.from("profile_contact").update(rest).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["profile_contact"] });
+      toast.success("Contact details saved");
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  if (!current) return <p className="text-muted-foreground">Loading…</p>;
+
+  return (
+    <section className="space-y-4">
+      <h2 className="text-xl font-bold">Private contact details</h2>
+      <p className="text-sm text-muted-foreground">
+        Only you can see these. They are never shown on the public website.
+      </p>
+      <div className="panel grid gap-3 rounded-2xl border border-border p-5 sm:grid-cols-2">
+        <label className="block text-sm">
+          <span className="text-muted-foreground">Email</span>
+          <input
+            value={current.email}
+            onChange={(e) => setForm({ ...current, email: e.target.value })}
+            className="mt-1 w-full rounded-xl border border-border bg-input/40 px-3 py-2 outline-none focus:border-primary"
+          />
+        </label>
+        <label className="block text-sm">
+          <span className="text-muted-foreground">Phone</span>
+          <input
+            value={current.phone}
+            onChange={(e) => setForm({ ...current, phone: e.target.value })}
+            className="mt-1 w-full rounded-xl border border-border bg-input/40 px-3 py-2 outline-none focus:border-primary"
+          />
+        </label>
+      </div>
+      <button
+        onClick={() => save.mutate()}
+        className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
+      >
+        <Save className="h-4 w-4" /> Save contact details
       </button>
     </section>
   );

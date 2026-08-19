@@ -3,9 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Play } from "lucide-react";
 
-import { SiteNav, MobileNav } from "@/components/site/SiteNav";
+import { SiteNav } from "@/components/site/SiteNav";
 import { publishedProjectsQuery, thumbnailsQuery, type Project } from "@/lib/portfolio";
-import cameraImage from "@/assets/work-camera.jpg";
 import fallback1 from "@/assets/work-1.jpg";
 import fallback2 from "@/assets/work-2.jpg";
 import fallback3 from "@/assets/work-3.jpg";
@@ -39,15 +38,6 @@ function WorkPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      <img
-        src={cameraImage}
-        alt=""
-        aria-hidden="true"
-        width={1008}
-        height={704}
-        loading="lazy"
-        className="pointer-events-none absolute -right-10 top-0 hidden w-[46%] opacity-80 lg:block"
-      />
       <SiteNav />
 
       <main className="relative px-6 pb-24 pt-4 md:px-12">
@@ -87,7 +77,6 @@ function WorkPage() {
         )}
       </main>
 
-      <MobileNav />
     </div>
   );
 }
