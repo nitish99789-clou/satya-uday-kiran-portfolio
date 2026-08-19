@@ -27,10 +27,20 @@ export type Profile = {
   work_heading: string;
   contact_heading: string;
   contact_description: string;
-  email: string;
-  phone: string;
   location: string;
 };
+
+export type ProfileContact = { id: string; email: string; phone: string };
+
+/** Admin-only: owner email/phone live in a private table, never exposed publicly. */
+export const profileContactQuery = queryOptions({
+  queryKey: ["profile_contact"],
+  queryFn: async (): Promise<ProfileContact | null> => {
+    const { data, error } = await supabase.from("profile_contact").select("*").limit(1).maybeSingle();
+    if (error) throw error;
+    return (data as ProfileContact | null) ?? null;
+  },
+});
 
 export const profileQuery = queryOptions({
   queryKey: ["profile"],
