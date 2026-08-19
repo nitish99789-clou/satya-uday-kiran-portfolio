@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Mail, Phone, MapPin, Send, Instagram, Youtube, Linkedin, Link2 } from "lucide-react";
+import { MapPin, Send, Instagram, Youtube, Linkedin, Link2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { SiteNav } from "@/components/site/SiteNav";
+import { supabase } from "@/integrations/supabase/client";
 import { profileQuery, socialLinksQuery } from "@/lib/portfolio";
 
 export const Route = createFileRoute("/contact")({
@@ -34,12 +35,19 @@ function ContactPage() {
   const { data: socials = [] } = useQuery(socialLinksQuery);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  function handleSubmit(e: React.FormEvent) {
+  const [sending, setSending] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`New project enquiry from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\nFrom: ${form.name} (${form.email})`);
-    window.location.href = `mailto:${profile?.email ?? ""}?subject=${subject}&body=${body}`;
-    toast.success("Opening your email app to send the message.");
+    setSending(true);
+    const { error } = await supabase.from("contact_messages").insert(form);
+    setSending(false);
+    if (error) {
+      toast.error("Message could not be sent. Please try again.");
+      return;
+    }
+    setForm({ name: "", email: "", message: "" });
+    toast.success("Thanks! Your message has been sent.");
   }
 
   return (
@@ -57,18 +65,6 @@ function ContactPage() {
           </p>
 
           <ul className="mt-9 space-y-5 text-lg">
-            <li className="flex items-center gap-4">
-              <Mail className="h-6 w-6 text-primary" />
-              <a href={`mailto:${profile?.email ?? ""}`} className="hover:text-primary">
-                {profile?.email}
-              </a>
-            </li>
-            <li className="flex items-center gap-4">
-              <Phone className="h-6 w-6 text-primary" />
-              <a href={`tel:${profile?.phone ?? ""}`} className="hover:text-primary">
-                {profile?.phone}
-              </a>
-            </li>
             <li className="flex items-center gap-4">
               <MapPin className="h-6 w-6 text-primary" />
               <span>{profile?.location}</span>
@@ -124,9 +120,10 @@ function ContactPage() {
           />
           <button
             type="submit"
+            disabled={sending}
             className="glow flex w-full items-center justify-center gap-3 rounded-2xl bg-primary px-6 py-4 text-base font-bold tracking-widest text-primary-foreground transition-transform hover:scale-[1.01]"
           >
-            SEND MESSAGE <Send className="h-5 w-5" />
+            {sending ? "SENDING…" : "SEND MESSAGE"} <Send className="h-5 w-5" />
           </button>
         </form>
       </main>
