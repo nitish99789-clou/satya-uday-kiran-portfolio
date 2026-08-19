@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
       experience: {
         Row: {
           company: string
@@ -56,7 +80,6 @@ export type Database = {
           contact_description: string
           contact_heading: string
           created_at: string
-          email: string
           full_name: string
           hero_description: string
           hero_intro: string
@@ -65,7 +88,6 @@ export type Database = {
           hero_line2_b: string
           id: string
           location: string
-          phone: string
           updated_at: string
           work_heading: string
         }
@@ -77,7 +99,6 @@ export type Database = {
           contact_description?: string
           contact_heading?: string
           created_at?: string
-          email?: string
           full_name?: string
           hero_description?: string
           hero_intro?: string
@@ -86,7 +107,6 @@ export type Database = {
           hero_line2_b?: string
           id?: string
           location?: string
-          phone?: string
           updated_at?: string
           work_heading?: string
         }
@@ -98,7 +118,6 @@ export type Database = {
           contact_description?: string
           contact_heading?: string
           created_at?: string
-          email?: string
           full_name?: string
           hero_description?: string
           hero_intro?: string
@@ -107,9 +126,32 @@ export type Database = {
           hero_line2_b?: string
           id?: string
           location?: string
-          phone?: string
           updated_at?: string
           work_heading?: string
+        }
+        Relationships: []
+      }
+      profile_contact: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string
+          id?: string
+          phone?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          phone?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -247,7 +289,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      is_admin: { Args: never; Returns: boolean }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
