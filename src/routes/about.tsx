@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import * as Icons from "lucide-react";
 
-import { SiteNav, MobileNav } from "@/components/site/SiteNav";
+import { SiteNav } from "@/components/site/SiteNav";
 import { profileQuery, statisticsQuery, servicesQuery, experienceQuery } from "@/lib/portfolio";
 import aboutImage from "@/assets/about-studio.jpg";
 
@@ -67,14 +67,14 @@ function AboutPage() {
           <p className="font-script mt-8 text-4xl text-primary">{profile?.full_name}</p>
         </div>
 
-        <div className="relative">
+        <div className="relative hidden lg:block">
           <img
             src={aboutImage}
             alt="Cinematic editing studio with three monitors and neon sign"
             width={1104}
             height={1104}
             loading="lazy"
-            className="w-full object-contain"
+            className="img-blend w-full object-contain"
           />
         </div>
       </main>
@@ -116,7 +116,6 @@ function AboutPage() {
         </ol>
       </section>
 
-      <MobileNav />
     </div>
   );
 }

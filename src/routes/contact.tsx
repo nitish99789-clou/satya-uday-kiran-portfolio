@@ -4,9 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Mail, Phone, MapPin, Send, Instagram, Youtube, Linkedin, Link2 } from "lucide-react";
 import { toast } from "sonner";
 
-import { SiteNav, MobileNav } from "@/components/site/SiteNav";
+import { SiteNav } from "@/components/site/SiteNav";
 import { profileQuery, socialLinksQuery } from "@/lib/portfolio";
-import lightImage from "@/assets/contact-light.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -45,15 +44,6 @@ function ContactPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      <img
-        src={lightImage}
-        alt=""
-        aria-hidden="true"
-        width={912}
-        height={1104}
-        loading="lazy"
-        className="pointer-events-none absolute -right-16 bottom-0 hidden h-[85%] object-contain opacity-90 lg:block"
-      />
       <SiteNav />
 
       <main className="relative grid gap-12 px-6 pb-24 pt-4 md:px-12 lg:grid-cols-2">
@@ -141,7 +131,6 @@ function ContactPage() {
         </form>
       </main>
 
-      <MobileNav />
     </div>
   );
 }
