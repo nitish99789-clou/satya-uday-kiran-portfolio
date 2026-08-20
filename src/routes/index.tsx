@@ -40,9 +40,9 @@ function HomePage() {
             <span className="text-primary">{profile?.full_name ?? "Uday Kiran"}</span>
           </p>
 
-          <h1 className="mt-4 font-display text-5xl leading-[0.92] font-bold tracking-tight sm:text-6xl lg:text-[4.25rem]">
+          <h1 className="mt-4 font-display text-[2.35rem] leading-[0.95] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-[4.25rem]">
             <span className="text-steel block">{profile?.hero_line1 ?? "VIDEO EDITOR"}</span>
-            <span className="mt-1 block whitespace-nowrap">
+            <span className="mt-1 block lg:whitespace-nowrap">
               <span className="text-steel">&amp; </span>
               <span className="text-primary">{profile?.hero_line2_a ?? "VISUAL"} </span>
               <span className="text-steel">{profile?.hero_line2_b ?? "STORYTELLER"}</span>
@@ -70,7 +70,7 @@ function HomePage() {
               ABOUT ME
             </Link>
           </div>
-
+        </div>
 
         <div className="relative">
           <img
