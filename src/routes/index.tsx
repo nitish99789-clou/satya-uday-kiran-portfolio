@@ -70,7 +70,7 @@ function HomePage() {
               ABOUT ME
             </Link>
           </div>
-
+        </div>
 
         <div className="relative">
           <img
