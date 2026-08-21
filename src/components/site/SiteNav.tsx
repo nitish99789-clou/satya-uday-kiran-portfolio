@@ -170,7 +170,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           <span className="flex-1 text-left">{dark ? "DARK MODE" : "LIGHT MODE"}</span>
           <span
             aria-hidden="true"
-            className={`flex h-7 w-13 items-center rounded-full p-1 transition-colors ${
+            className={`flex h-7 w-12 items-center rounded-full p-1 transition-colors ${
               dark ? "bg-primary" : "bg-muted"
             }`}
           >

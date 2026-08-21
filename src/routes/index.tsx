@@ -30,7 +30,6 @@ function HomePage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      <div className="pointer-events-none absolute -right-40 top-1/4 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[140px]" />
       <SiteNav />
 
       <main className="relative grid items-center gap-10 px-6 pb-16 pt-6 md:px-12 lg:grid-cols-2 lg:gap-4 lg:pb-24">
