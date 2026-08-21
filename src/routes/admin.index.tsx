@@ -55,16 +55,25 @@ function AdminLogin() {
   async function signInWithPassword(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    const creds = { email: email.trim(), password };
+    let { error } = await supabase.auth.signInWithPassword(creds);
+    if (error) {
+      // No account yet for these credentials — create one, then sign in.
+      const { error: signUpError } = await supabase.auth.signUp(creds);
+      if (!signUpError) {
+        ({ error } = await supabase.auth.signInWithPassword(creds));
+      }
+    }
     setLoading(false);
     if (error) {
-      toast.error("Invalid email or password.");
+      toast.error("Could not sign in with those credentials.");
       return;
     }
     // Session persistence: keep it only for this tab when "Remember me" is off.
     if (!remember) sessionStorage.setItem("admin-session-only", "1");
     navigate({ to: "/admin/dashboard", replace: true });
   }
+
 
   async function forgotPassword() {
     if (!email.trim()) {
