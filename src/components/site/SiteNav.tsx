@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Send, Menu, X, Home, User, Briefcase, Phone, Instagram, Youtube, Linkedin } from "lucide-react";
+import {
+  Send,
+  Menu,
+  X,
+  Home,
+  User,
+  Briefcase,
+  Phone,
+  Instagram,
+  Youtube,
+  Linkedin,
+  ChevronRight,
+  Sun,
+  Moon,
+  Download,
+} from "lucide-react";
+
+import { useTheme } from "@/components/site/theme";
 
 const links = [
   { to: "/", label: "HOME", icon: Home },
@@ -17,6 +34,7 @@ const socials = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -54,6 +72,14 @@ export function SiteNav() {
         </Link>
         <button
           type="button"
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          onClick={toggle}
+          className="hidden text-foreground transition-colors hover:text-primary md:inline-flex"
+        >
+          {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+        </button>
+        <button
+          type="button"
           aria-label="Open menu"
           onClick={() => setOpen(true)}
           className="md:hidden"
@@ -68,14 +94,17 @@ export function SiteNav() {
 }
 
 function MobileDrawer({ onClose }: { onClose: () => void }) {
+  const { theme, toggle } = useTheme();
+  const dark = theme === "dark";
+
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       <button
         aria-label="Close menu"
         onClick={onClose}
-        className="absolute inset-0 bg-background/60 backdrop-blur-[2px]"
+        className="absolute inset-0 bg-background/70"
       />
-      <aside className="drawer-in absolute inset-y-0 right-0 flex w-[82%] max-w-sm flex-col overflow-y-auto bg-[oklch(0.13_0.004_60)] px-7 py-6 shadow-[0_0_60px_oklch(0_0_0/0.8)]">
+      <aside className="drawer-in absolute inset-y-0 right-0 flex w-[78%] max-w-sm flex-col overflow-y-auto bg-card px-6 py-5">
         <button
           aria-label="Close menu"
           onClick={onClose}
@@ -84,36 +113,37 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           <X className="h-7 w-7" />
         </button>
 
-        <div className="mt-4 flex items-center gap-4">
-          <span className="glow flex h-16 w-16 items-center justify-center rounded-full border border-primary font-display text-2xl font-bold">
+        <div className="mt-3 flex items-center gap-4">
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-primary font-display text-2xl font-bold">
             U<span className="text-primary italic">K</span>
           </span>
           <div className="min-w-0">
             <p className="truncate text-lg font-semibold">Uday Kiran</p>
-            <p className="truncate text-sm text-muted-foreground">Video Editor &amp; Visual Storyteller</p>
+            <p className="truncate text-sm text-muted-foreground">Video Editor &amp; Visual Creator</p>
           </div>
         </div>
 
-        <div className="mt-6 h-px w-full bg-primary/30" />
+        <div className="mt-5 h-px w-full bg-primary/50" />
 
-        <nav className="mt-8 flex flex-col gap-7">
+        <nav className="mt-5 flex flex-col">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={onClose}
               activeOptions={{ exact: l.to === "/" }}
-              className="flex items-center gap-5 text-lg font-medium tracking-wide text-foreground transition-colors hover:text-primary data-[status=active]:text-primary"
+              className="flex items-center gap-5 py-4 text-base font-medium tracking-wide text-foreground transition-colors hover:text-primary data-[status=active]:text-primary"
             >
               <l.icon className="h-6 w-6" />
-              {l.label}
+              <span className="flex-1">{l.label}</span>
+              <ChevronRight className="h-5 w-5 text-muted-foreground" />
             </Link>
           ))}
         </nav>
 
-        <div className="mt-10 h-px w-full bg-primary/30" />
+        <div className="mt-3 h-px w-full bg-primary/50" />
 
-        <p className="mt-7 text-sm font-semibold tracking-[0.2em] text-primary">FOLLOW ME</p>
+        <p className="mt-6 text-sm font-semibold tracking-[0.2em] text-primary">FOLLOW ME</p>
         <div className="mt-4 flex gap-3">
           {socials.map((s) => (
             <a
@@ -122,15 +152,45 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
               target="_blank"
               rel="noreferrer"
               aria-label={s.label}
-              className="flex h-12 w-12 items-center justify-center rounded-xl border border-border transition-colors hover:border-primary hover:text-primary"
+              className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border transition-colors hover:border-primary hover:text-primary"
             >
-              <s.icon className="h-5 w-5" />
+              <s.icon className="h-6 w-6" />
             </a>
           ))}
         </div>
 
-        <div className="mt-8 h-px w-full bg-primary/30" />
-        <p className="mt-6 pb-4 text-xs text-muted-foreground">
+        <div className="mt-6 h-px w-full bg-primary/50" />
+
+        <button
+          type="button"
+          onClick={toggle}
+          className="mt-6 flex w-full items-center gap-5 text-base tracking-wide"
+        >
+          {dark ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
+          <span className="flex-1 text-left">{dark ? "DARK MODE" : "LIGHT MODE"}</span>
+          <span
+            aria-hidden="true"
+            className={`flex h-7 w-13 items-center rounded-full p-1 transition-colors ${
+              dark ? "bg-primary" : "bg-muted"
+            }`}
+          >
+            <span
+              className={`h-5 w-5 rounded-full bg-background transition-transform ${
+                dark ? "translate-x-6" : ""
+              }`}
+            />
+          </span>
+        </button>
+
+        <a
+          href="/resume.pdf"
+          className="mt-7 flex items-center gap-5 text-base tracking-wide transition-colors hover:text-primary"
+        >
+          <Download className="h-6 w-6" />
+          DOWNLOAD RESUME
+        </a>
+
+        <p className="mt-auto pt-10 pb-2 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} Uday Kiran. All rights reserved.
         </p>
       </aside>
