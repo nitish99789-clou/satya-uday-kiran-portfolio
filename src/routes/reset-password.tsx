@@ -58,7 +58,6 @@ function ResetPasswordPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-5 py-12">
-      <div className="scene-glow pointer-events-none absolute left-1/2 top-1/3 h-[520px] w-[520px] -translate-x-1/2" />
 
       <div className="relative w-full max-w-md">
         <div className="text-center">
@@ -77,7 +76,7 @@ function ResetPasswordPage() {
 
         <form
           onSubmit={submit}
-          className="panel mt-8 space-y-4 rounded-3xl border border-primary/40 p-7 shadow-[0_0_60px_oklch(0.68_0.2_41/0.12)]"
+          className="panel mt-8 space-y-4 rounded-3xl border border-primary/40 p-7"
         >
           <div className="flex items-center gap-3 rounded-2xl border border-border bg-input/30 px-4 py-3.5 focus-within:border-primary">
             <Lock className="h-5 w-5 shrink-0 text-muted-foreground" />

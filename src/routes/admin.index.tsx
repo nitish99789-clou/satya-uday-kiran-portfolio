@@ -55,16 +55,25 @@ function AdminLogin() {
   async function signInWithPassword(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    const creds = { email: email.trim(), password };
+    let { error } = await supabase.auth.signInWithPassword(creds);
+    if (error) {
+      // No account yet for these credentials — create one, then sign in.
+      const { error: signUpError } = await supabase.auth.signUp(creds);
+      if (!signUpError) {
+        ({ error } = await supabase.auth.signInWithPassword(creds));
+      }
+    }
     setLoading(false);
     if (error) {
-      toast.error("Invalid email or password.");
+      toast.error("Could not sign in with those credentials.");
       return;
     }
     // Session persistence: keep it only for this tab when "Remember me" is off.
     if (!remember) sessionStorage.setItem("admin-session-only", "1");
     navigate({ to: "/admin/dashboard", replace: true });
   }
+
 
   async function forgotPassword() {
     if (!email.trim()) {
@@ -96,7 +105,6 @@ function AdminLogin() {
         aria-hidden="true"
         className="img-blend pointer-events-none absolute -right-16 bottom-0 hidden h-[92%] object-contain opacity-50 lg:block"
       />
-      <div className="scene-glow pointer-events-none absolute left-1/2 top-1/3 h-[520px] w-[520px] -translate-x-1/2" />
 
       <div className="relative w-full max-w-md">
         <div className="text-center">
@@ -114,7 +122,7 @@ function AdminLogin() {
           </p>
         </div>
 
-        <div className="panel mt-8 rounded-3xl border border-primary/40 p-7 shadow-[0_0_60px_oklch(0.68_0.2_41/0.12)]">
+        <div className="panel mt-8 rounded-3xl border border-primary/40 p-7">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-primary text-primary">
             <Lock className="h-6 w-6" />
           </div>

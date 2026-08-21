@@ -38,7 +38,6 @@ function AboutPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      <div className="pointer-events-none absolute -right-40 top-1/3 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[140px]" />
       <SiteNav />
 
       <main className="relative grid gap-12 px-6 pb-20 pt-6 md:px-12 lg:grid-cols-2 lg:items-center">
