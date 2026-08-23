@@ -163,7 +163,7 @@
   mask-composite: intersect;
 
   .light & {
-    mix-blend-mode: normal;
+    mix-blend-mode: multiply;
   }
 }
 
