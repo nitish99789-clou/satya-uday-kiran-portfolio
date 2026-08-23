@@ -119,7 +119,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
           </span>
           <div className="min-w-0">
             <p className="truncate text-lg font-semibold">Uday Kiran</p>
-            <p className="truncate text-sm text-muted-foreground">Video Editor &amp; Visual Creator</p>
+            <p className="text-xs leading-snug text-muted-foreground">Video Editor &amp; Visual Creator</p>
           </div>
         </div>
 
