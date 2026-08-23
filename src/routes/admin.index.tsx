@@ -66,7 +66,7 @@ function AdminLogin() {
     }
     setLoading(false);
     if (error) {
-      toast.error("Could not sign in with those credentials.");
+      toast.error(error.message || "Could not sign in with those credentials.");
       return;
     }
     // Session persistence: keep it only for this tab when "Remember me" is off.
