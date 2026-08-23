@@ -97,7 +97,7 @@
 
 /* Light theme — warm cream canvas, near-black type, same orange brand. */
 .light {
-  --background: oklch(0.972 0.012 80);
+  --background: oklch(0.963 0.018 76);
   --foreground: oklch(0.18 0.01 60);
   --card: oklch(0.985 0.008 80);
   --card-foreground: oklch(0.18 0.01 60);
@@ -163,7 +163,7 @@
   mask-composite: intersect;
 
   .light & {
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
   }
 }
 
