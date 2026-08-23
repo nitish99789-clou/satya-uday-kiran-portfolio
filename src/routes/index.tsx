@@ -53,19 +53,19 @@ function HomePage() {
             {profile?.hero_description}
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-nowrap items-center gap-3 sm:gap-4">
             <Link
               to="/work"
-              className="glow inline-flex items-center gap-3 rounded-full bg-primary px-7 py-3.5 text-sm font-bold tracking-widest text-primary-foreground transition-transform hover:scale-[1.03]"
+              className="glow inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-5 py-3 text-xs font-bold tracking-widest text-primary-foreground transition-transform hover:scale-[1.03] sm:gap-3 sm:px-7 sm:py-3.5 sm:text-sm"
             >
               VIEW MY WORK
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground/15">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-foreground/15 sm:h-6 sm:w-6">
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
             <Link
               to="/about"
-              className="inline-flex items-center rounded-full border border-primary px-7 py-3.5 text-sm font-bold tracking-widest text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+              className="inline-flex shrink-0 items-center rounded-full border border-primary px-5 py-3 text-xs font-bold tracking-widest text-foreground transition-colors hover:bg-primary hover:text-primary-foreground sm:px-7 sm:py-3.5 sm:text-sm"
             >
               ABOUT ME
             </Link>
@@ -76,9 +76,17 @@ function HomePage() {
           <img
             src={heroImage}
             alt="Video editing workstation with camera, clapperboard and editing timeline"
-            width={1200}
-            height={1008}
-            className="img-blend w-full object-contain"
+            width={1408}
+            height={1104}
+            className="img-blend w-full object-contain light:hidden"
+          />
+          <img
+            src={heroImageLight}
+            alt=""
+            aria-hidden="true"
+            width={1408}
+            height={1104}
+            className="img-blend hidden w-full object-contain light:block"
           />
         </div>
       </main>
