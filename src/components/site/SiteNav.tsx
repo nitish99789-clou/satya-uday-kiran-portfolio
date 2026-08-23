@@ -104,7 +104,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
         onClick={onClose}
         className="absolute inset-0 bg-background/70"
       />
-      <aside className="drawer-in absolute inset-y-0 right-0 flex w-[78%] max-w-sm flex-col overflow-y-auto bg-card px-6 py-5">
+      <aside className="drawer-in absolute inset-y-0 right-0 flex w-[70%] max-w-[300px] flex-col overflow-y-auto bg-card px-6 py-5">
         <button
           aria-label="Close menu"
           onClick={onClose}
@@ -114,7 +114,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
         </button>
 
         <div className="mt-3 flex items-center gap-4">
-          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-primary font-display text-2xl font-bold">
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-primary font-display text-2xl font-bold">
             U<span className="text-primary italic">K</span>
           </span>
           <div className="min-w-0">
@@ -132,9 +132,9 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
               to={l.to}
               onClick={onClose}
               activeOptions={{ exact: l.to === "/" }}
-              className="flex items-center gap-5 py-4 text-base font-medium tracking-wide text-foreground transition-colors hover:text-primary data-[status=active]:text-primary"
+              className="flex items-center gap-4 py-3.5 text-[15px] font-medium tracking-wide text-foreground transition-colors hover:text-primary data-[status=active]:text-primary"
             >
-              <l.icon className="h-6 w-6" />
+              <l.icon className="h-5 w-5" />
               <span className="flex-1">{l.label}</span>
               <ChevronRight className="h-5 w-5 text-muted-foreground" />
             </Link>
@@ -152,7 +152,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
               target="_blank"
               rel="noreferrer"
               aria-label={s.label}
-              className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border transition-colors hover:border-primary hover:text-primary"
+              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border transition-colors hover:border-primary hover:text-primary"
             >
               <s.icon className="h-6 w-6" />
             </a>
