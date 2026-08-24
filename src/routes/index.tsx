@@ -55,10 +55,10 @@ function HomePage() {
           <div className="mt-8 flex flex-nowrap items-center gap-3 sm:gap-4">
             <Link
               to="/work"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary px-5 py-3 text-xs font-bold tracking-widest text-foreground transition-colors hover:bg-primary hover:text-primary-foreground sm:gap-3 sm:px-7 sm:py-3.5 sm:text-sm"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-primary bg-primary px-5 py-3 text-xs font-bold tracking-widest text-primary-foreground transition-colors hover:bg-primary/90 sm:gap-3 sm:px-7 sm:py-3.5 sm:text-sm"
             >
               VIEW MY WORK
-              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-primary sm:h-6 sm:w-6">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-primary-foreground/60 sm:h-6 sm:w-6">
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
