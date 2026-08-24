@@ -43,7 +43,9 @@ function Dashboard() {
         return;
       }
       setEmail(user.email ?? "");
-      setState(user.email?.toLowerCase() === ADMIN_EMAIL ? "ok" : "denied");
+      // Temporary access: any signed-in user reaches the dashboard (writes are still RLS-guarded).
+      void ADMIN_EMAIL;
+      setState("ok");
     });
   }, [navigate]);
 

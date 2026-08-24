@@ -12,12 +12,8 @@ import {
   Youtube,
   Linkedin,
   ChevronRight,
-  Sun,
-  Moon,
   Download,
 } from "lucide-react";
-
-import { useTheme } from "@/components/site/theme";
 
 const links = [
   { to: "/", label: "HOME", icon: Home },
@@ -34,7 +30,6 @@ const socials = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
-  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -72,19 +67,11 @@ export function SiteNav() {
         </Link>
         <button
           type="button"
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          onClick={toggle}
-          className="hidden text-foreground transition-colors hover:text-primary md:inline-flex"
-        >
-          {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
-        </button>
-        <button
-          type="button"
           aria-label="Open menu"
           onClick={() => setOpen(true)}
           className="md:hidden"
         >
-          <Menu className="h-8 w-8" />
+          <Menu className="h-7 w-7" />
         </button>
       </div>
 
@@ -94,9 +81,6 @@ export function SiteNav() {
 }
 
 function MobileDrawer({ onClose }: { onClose: () => void }) {
-  const { theme, toggle } = useTheme();
-  const dark = theme === "dark";
-
   return (
     <div className="fixed inset-0 z-50 md:hidden">
       <button
@@ -104,47 +88,49 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
         onClick={onClose}
         className="absolute inset-0 bg-background/70"
       />
-      <aside className="drawer-in absolute inset-y-0 right-0 flex w-[70%] max-w-[300px] flex-col overflow-y-auto bg-card px-6 py-5">
+      <aside className="drawer-in absolute inset-y-0 right-0 flex w-[62%] max-w-[250px] flex-col overflow-y-auto bg-card px-4 py-4">
         <button
           aria-label="Close menu"
           onClick={onClose}
           className="self-end text-foreground/80 transition-colors hover:text-primary"
         >
-          <X className="h-7 w-7" />
+          <X className="h-6 w-6" />
         </button>
 
-        <div className="mt-3 flex items-center gap-4">
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-primary font-display text-2xl font-bold">
+        <div className="mt-2 flex items-center gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-primary font-display text-xl font-bold">
             U<span className="text-primary italic">K</span>
           </span>
           <div className="min-w-0">
-            <p className="truncate text-lg font-semibold">Uday Kiran</p>
-            <p className="text-xs leading-snug text-muted-foreground">Video Editor &amp; Visual Creator</p>
+            <p className="truncate text-sm font-semibold">Uday Kiran</p>
+            <p className="text-[10px] leading-snug text-muted-foreground">
+              Video Editor &amp; Visual Creator
+            </p>
           </div>
         </div>
 
-        <div className="mt-5 h-px w-full bg-primary/50" />
+        <div className="mt-3 h-px w-full bg-primary/50" />
 
-        <nav className="mt-5 flex flex-col">
+        <nav className="mt-2 flex flex-col">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={onClose}
               activeOptions={{ exact: l.to === "/" }}
-              className="flex items-center gap-4 py-3.5 text-[15px] font-medium tracking-wide text-foreground transition-colors hover:text-primary data-[status=active]:text-primary"
+              className="flex items-center gap-3 py-2.5 text-[12px] font-medium tracking-wide text-foreground transition-colors hover:text-primary data-[status=active]:text-primary"
             >
-              <l.icon className="h-5 w-5" />
+              <l.icon className="h-4 w-4" />
               <span className="flex-1">{l.label}</span>
-              <ChevronRight className="h-5 w-5 text-muted-foreground" />
+              <ChevronRight className="h-4 w-4 text-muted-foreground" />
             </Link>
           ))}
         </nav>
 
-        <div className="mt-3 h-px w-full bg-primary/50" />
+        <div className="mt-2 h-px w-full bg-primary/50" />
 
-        <p className="mt-6 text-sm font-semibold tracking-[0.2em] text-primary">FOLLOW ME</p>
-        <div className="mt-4 flex gap-3">
+        <p className="mt-4 text-[11px] font-semibold tracking-[0.2em] text-primary">FOLLOW ME</p>
+        <div className="mt-2.5 flex gap-2">
           {socials.map((s) => (
             <a
               key={s.label}
@@ -152,45 +138,24 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
               target="_blank"
               rel="noreferrer"
               aria-label={s.label}
-              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border transition-colors hover:border-primary hover:text-primary"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-border transition-colors hover:border-primary hover:text-primary"
             >
-              <s.icon className="h-6 w-6" />
+              <s.icon className="h-4.5 w-4.5" />
             </a>
           ))}
         </div>
 
-        <div className="mt-6 h-px w-full bg-primary/50" />
-
-        <button
-          type="button"
-          onClick={toggle}
-          className="mt-6 flex w-full items-center gap-5 text-base tracking-wide"
-        >
-          {dark ? <Moon className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
-          <span className="flex-1 text-left">{dark ? "DARK MODE" : "LIGHT MODE"}</span>
-          <span
-            aria-hidden="true"
-            className={`flex h-7 w-12 items-center rounded-full p-1 transition-colors ${
-              dark ? "bg-primary" : "bg-muted"
-            }`}
-          >
-            <span
-              className={`h-5 w-5 rounded-full bg-background transition-transform ${
-                dark ? "translate-x-6" : ""
-              }`}
-            />
-          </span>
-        </button>
+        <div className="mt-4 h-px w-full bg-primary/50" />
 
         <a
           href="/resume.pdf"
-          className="mt-7 flex items-center gap-5 text-base tracking-wide transition-colors hover:text-primary"
+          className="mt-4 flex items-center gap-4 text-[12px] tracking-wide transition-colors hover:text-primary"
         >
-          <Download className="h-6 w-6" />
+          <Download className="h-5 w-5" />
           DOWNLOAD RESUME
         </a>
 
-        <p className="mt-auto pt-10 pb-2 text-center text-xs text-muted-foreground">
+        <p className="mt-auto pt-10 pb-2 text-center text-[10px] text-muted-foreground">
           © {new Date().getFullYear()} Uday Kiran. All rights reserved.
         </p>
       </aside>
