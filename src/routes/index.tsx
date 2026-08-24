@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/site/SiteNav";
 import { profileQuery } from "@/lib/portfolio";
 import heroImage from "@/assets/hero-setup.jpg";
-import heroImageLight from "@/assets/hero-setup-light.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({

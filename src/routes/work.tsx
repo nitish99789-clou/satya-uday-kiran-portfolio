@@ -46,15 +46,15 @@ function WorkPage() {
           Stories I've Brought to Life
         </h1>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2">
+        <div className="mt-8 flex flex-nowrap items-center gap-1 overflow-x-auto sm:gap-2">
           {categories.map((c) => (
             <button
               key={c}
               onClick={() => setFilter(c)}
               className={
                 filter === c
-                  ? "rounded-full bg-primary px-6 py-2.5 text-sm font-semibold tracking-wider text-primary-foreground"
-                  : "rounded-full px-6 py-2.5 text-sm font-semibold tracking-wider text-muted-foreground transition-colors hover:text-primary"
+                  ? "shrink-0 rounded-full bg-primary px-3 py-2 text-[11px] font-semibold tracking-wide whitespace-nowrap text-primary-foreground sm:px-6 sm:py-2.5 sm:text-sm sm:tracking-wider"
+                  : "shrink-0 rounded-full px-3 py-2 text-[11px] font-semibold tracking-wide whitespace-nowrap text-muted-foreground transition-colors hover:text-primary sm:px-6 sm:py-2.5 sm:text-sm sm:tracking-wider"
               }
             >
               {c}

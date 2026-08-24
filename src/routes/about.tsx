@@ -40,7 +40,7 @@ function AboutPage() {
     <div className="relative min-h-screen overflow-hidden bg-background">
       <SiteNav />
 
-      <main className="relative grid gap-12 px-6 pb-20 pt-6 md:px-12 lg:grid-cols-2 lg:items-center">
+      <main className="relative grid gap-12 px-6 pb-20 pt-6 md:px-12 lg:grid-cols-2 lg:items-start">
         <div className="max-w-xl">
           <p className="text-sm font-semibold tracking-[0.25em] text-primary">
             {profile?.about_eyebrow ?? "WHO I AM"}
@@ -66,7 +66,7 @@ function AboutPage() {
           <p className="font-script mt-8 text-4xl text-primary">{profile?.full_name}</p>
         </div>
 
-        <div className="relative hidden lg:block">
+        <div className="relative hidden lg:-mt-16 lg:block">
           <img
             src={aboutImage}
             alt="Cinematic editing studio with three monitors and neon sign"

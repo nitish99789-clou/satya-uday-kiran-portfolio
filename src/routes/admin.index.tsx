@@ -5,8 +5,6 @@ import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
-import studioImage from "@/assets/about-studio.jpg";
-import lightImage from "@/assets/contact-light.jpg";
 
 export const Route = createFileRoute("/admin/")({
   ssr: false,
@@ -92,20 +90,6 @@ function AdminLogin() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-5 py-12">
-      {/* Cinematic environment — blended, borderless backdrop */}
-      <img
-        src={studioImage}
-        alt=""
-        aria-hidden="true"
-        className="img-blend pointer-events-none absolute -left-24 bottom-0 hidden w-[46%] opacity-45 lg:block"
-      />
-      <img
-        src={lightImage}
-        alt=""
-        aria-hidden="true"
-        className="img-blend pointer-events-none absolute -right-16 bottom-0 hidden h-[92%] object-contain opacity-50 lg:block"
-      />
-
       <div className="relative w-full max-w-md">
         <div className="text-center">
           <p className="font-display text-6xl font-bold tracking-tight">
